@@ -16,13 +16,15 @@ class DictionaryManager {
         case impossibleToDecode
     }
 
+    private var words = [Word]()
+    
     private init() {
         loadData()
     }
 
     func getAllOrdered() -> [Word] {
-        //TODO: Implement the method
-        fatalError("Not implemented")
+        words = words.sorted(by: { $0.word < $1.word })
+        return words
     }
 
     func findWords(with prefix: String) -> [Word] {
@@ -31,8 +33,7 @@ class DictionaryManager {
     }
 
     private func loadData() {
-        //TODO: Implement the method
-        fatalError("Not implemented")
+        words = loadDictionary()
     }
 
     func loadDetailForWord(word: String) -> Promise<[WordDetail]> {
