@@ -43,8 +43,12 @@ class DictionaryManager {
     }
 
     func loadDetailForWord(word: String) -> Promise<[WordDetail]> {
-        let detailURL = URL(string: "https://api.dictionaryapi.dev/api/v2/entries/en/\(word)")
-        let request = URLRequest(url: detailURL!)
+        guard let escapedWord = word.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed),
+              let detailURL = URL(string: "https://api.dictionaryapi.dev/api/v2/entries/en/\(escapedWord)") else {
+            fatalError()
+        }
+        
+        let request = URLRequest(url: detailURL)
         
         return Promise<[WordDetail]> { resolve, reject, _ in
             URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
