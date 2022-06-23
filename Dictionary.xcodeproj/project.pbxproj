@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B068DFFD7FACFAAC46C198A /* Pods_DictionaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF10512D23E6B3B04C661932 /* Pods_DictionaryTests.framework */; };
+		8B243548286421E2009EABEF /* WordError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B243547286421E2009EABEF /* WordError.swift */; };
 		9579FB9B2512401700AA6AF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579FB9A2512401700AA6AF6 /* AppDelegate.swift */; };
 		9579FB9F2512401700AA6AF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9579FB9E2512401700AA6AF6 /* ViewController.swift */; };
 		9579FBA22512401700AA6AF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9579FBA02512401700AA6AF6 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		34AB227F523D0A85CD866E55 /* Pods-Dictionary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary.release.xcconfig"; path = "Target Support Files/Pods-Dictionary/Pods-Dictionary.release.xcconfig"; sourceTree = "<group>"; };
 		415EC436550FC6EDC9F08D0D /* Pods_Dictionary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		880D972E394C877600AF88EF /* Pods-Dictionary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary.debug.xcconfig"; path = "Target Support Files/Pods-Dictionary/Pods-Dictionary.debug.xcconfig"; sourceTree = "<group>"; };
+		8B243547286421E2009EABEF /* WordError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordError.swift; sourceTree = "<group>"; };
 		9579FB972512401700AA6AF6 /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9579FB9A2512401700AA6AF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9579FB9E2512401700AA6AF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				9579FBC2251244E100AA6AF6 /* DictionaryManager.swift */,
 				9579FBC02512428B00AA6AF6 /* WordDetail.swift */,
 				958D2FE825125E7D00625B76 /* Dictionary.swift */,
+				8B243547286421E2009EABEF /* WordError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			files = (
 				9579FB9F2512401700AA6AF6 /* ViewController.swift in Sources */,
 				9579FBC3251244E100AA6AF6 /* DictionaryManager.swift in Sources */,
+				8B243548286421E2009EABEF /* WordError.swift in Sources */,
 				9579FBBF2512426E00AA6AF6 /* DefinitionViewController.swift in Sources */,
 				958D2FE925125E7D00625B76 /* Dictionary.swift in Sources */,
 				9579FBC12512428B00AA6AF6 /* WordDetail.swift in Sources */,

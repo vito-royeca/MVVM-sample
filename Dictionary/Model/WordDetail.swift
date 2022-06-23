@@ -15,7 +15,7 @@ struct Meaning: Decodable {
 
 struct Phonetic: Decodable {
     let text: String?
-    let audio: URL?
+    let audio: String?
 }
 
 struct Definition: Decodable {

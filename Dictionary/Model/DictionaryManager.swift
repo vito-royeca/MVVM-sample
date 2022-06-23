@@ -14,6 +14,7 @@ class DictionaryManager {
 
     indirect enum Error: Swift.Error {
         case impossibleToDecode
+        case notFound(error: WordError)
     }
 
     private var words = [Word]()
@@ -23,13 +24,13 @@ class DictionaryManager {
     }
 
     func getAllOrdered() -> [Word] {
-        words = words.sorted(by: { $0.word < $1.word })
-        return words
+        let orderedWords = words.sorted(by: { $0.word < $1.word })
+        return orderedWords
     }
 
     func findWords(with prefix: String) -> [Word] {
-        //TODO: Implement the method
-        fatalError("Not implemented")
+        let filteredWords = words.filter({ $0.word.lowercased().hasPrefix(prefix.lowercased())})
+        return filteredWords
     }
 
     private func loadData() {
@@ -38,10 +39,28 @@ class DictionaryManager {
 
     func loadDetailForWord(word: String) -> Promise<[WordDetail]> {
         let detailURL = URL(string: "https://api.dictionaryapi.dev/api/v2/entries/en/\(word)")
-
+        let request = URLRequest(url: detailURL!)
+        
         return Promise<[WordDetail]> { resolve, reject, _ in
-            //TODO: Fetch the data from the detailURL and parse into [WordDetail]
-            fatalError("Not implemented")
+            URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                if let error = error {
+                    reject(error)
+                } else if let data = data {
+                    do {
+                        let wordDetail = try JSONDecoder().decode([WordDetail].self, from: data)
+                        resolve(wordDetail)
+                    } catch {
+                        do {
+                            let wordError = try JSONDecoder().decode(WordError.self, from: data)
+                            reject(Error.notFound(error: wordError))
+                        } catch {
+                            reject(Error.impossibleToDecode)
+                        }
+                    }
+                } else {
+                    reject(Error.impossibleToDecode)
+                }
+            }).resume()
         }
     }
 
