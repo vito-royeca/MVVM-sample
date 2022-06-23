@@ -54,11 +54,14 @@ class DefinitionViewController: UIViewController {
         stackView.addArrangedSubview(UIView())
         stackView.addArrangedSubview(UIView())
         for meaning in wordDetail.meanings ?? [] {
+            stackView.addArrangedSubview(buildMeaningLabel(text: meaning.partOfSpeech))
+            stackView.addArrangedSubview(UIView())
             for (index,definition) in (meaning.definitions ?? []).enumerated() {
                 stackView.addArrangedSubview(view(for: definition, index: index+1))
                 stackView.addArrangedSubview(UIView())
                 stackView.addArrangedSubview(UIView())
             }
+            stackView.addArrangedSubview(UIView())
         }
         
         let scrollView = UIScrollView()
