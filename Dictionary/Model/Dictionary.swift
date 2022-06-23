@@ -10,7 +10,7 @@ import Foundation
 
 struct Word: Decodable {
     let word: String
-    let meaning: String
+    let meaning: String?
 }
 
 struct Dictionary: Decodable {

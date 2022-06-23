@@ -35,7 +35,7 @@ class DefinitionViewController: UIViewController {
 
             self.display(wordDetail: word)
         }.catch { error in
-            self.display(error: error)
+            self.display(error: error, defaultMeaning: self.word?.meaning)
         }
     }
 
@@ -105,41 +105,40 @@ class DefinitionViewController: UIViewController {
         return stackView
     }
     
-    private func display(error: Error) {
-        var errorView: UIView?
+    private func display(error: Error, defaultMeaning: String?) {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         switch error {
         case DictionaryManager.Error.notFound(let wordError):
-            let stackView = UIStackView()
-            stackView.axis = .vertical
-            stackView.spacing = 8
-            stackView.translatesAutoresizingMaskIntoConstraints = false
-            
-            stackView.addArrangedSubview(buildMeaningLabel(text: wordError.title))
+            stackView.addArrangedSubview(buildTitleLabel(text: wordError.title))
             stackView.addArrangedSubview(UIView())
-            stackView.addArrangedSubview(buildExampleLabel(text: wordError.message))
-            stackView.addArrangedSubview(buildExampleLabel(text: wordError.resolution))
+            stackView.addArrangedSubview(buildMeaningLabel(text: wordError.message))
+            stackView.addArrangedSubview(buildMeaningLabel(text: wordError.resolution))
             stackView.addArrangedSubview(UIView())
             
-            errorView = stackView
         default:
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.numberOfLines = 0
-            label.text = error.localizedDescription
-            
-            errorView = label
+            stackView.addArrangedSubview(UIView())
+            stackView.addArrangedSubview(buildExampleLabel(text: error.localizedDescription))
+            stackView.addArrangedSubview(UIView())
         }
         
-        if let errorView = errorView {
-            view.addSubview(errorView)
-            NSLayoutConstraint.activate([
-                errorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-                errorView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-                errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-                errorView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
-            ])
+        if let defaultMeaning = defaultMeaning {
+            stackView.addArrangedSubview(buildTitleLabel(text: "Here is what we found offline:"))
+            stackView.addArrangedSubview(UIView())
+            stackView.addArrangedSubview(buildMeaningLabel(text: defaultMeaning))
+            stackView.addArrangedSubview(UIView())
         }
+        
+        view.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+        ])
     }
     
     private func buildTitleLabel(text: String? = nil) -> UILabel {
