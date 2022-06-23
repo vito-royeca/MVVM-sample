@@ -18,14 +18,19 @@ class DictionaryManager {
     }
 
     private var words = [Word]()
+    private var isSorted = false
     
     private init() {
         loadData()
     }
 
     func getAllOrdered() -> [Word] {
-        let orderedWords = words.sorted(by: { $0.word < $1.word })
-        return orderedWords
+        if !isSorted {
+            words = words.sorted(by: { $0.word < $1.word })
+            isSorted = true
+        }
+        
+        return words
     }
 
     func findWords(with prefix: String) -> [Word] {
