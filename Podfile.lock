@@ -1,0 +1,28 @@
+PODS:
+  - HydraAsync (2.0.6)
+  - Nimble (9.2.1)
+  - PureLayout (3.1.9)
+  - Quick (4.0.0)
+
+DEPENDENCIES:
+  - HydraAsync
+  - Nimble
+  - PureLayout
+  - Quick
+
+SPEC REPOS:
+  trunk:
+    - HydraAsync
+    - Nimble
+    - PureLayout
+    - Quick
+
+SPEC CHECKSUMS:
+  HydraAsync: 8d589bd725b0224f899afafc9a396327405f8063
+  Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
+  PureLayout: 5fb5e5429519627d60d079ccb1eaa7265ce7cf88
+  Quick: 6473349e43b9271a8d43839d9ba1c442ed1b7ac4
+
+PODFILE CHECKSUM: e8a3b183ba31e36414bd392337bcdfd2fa12a0c3
+
+COCOAPODS: 1.10.2
